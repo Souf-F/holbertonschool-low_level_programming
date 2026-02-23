@@ -1,23 +1,23 @@
 #include <stdio.h>
 
 /**
- * main - Point d'entrée
+ * main - Point d'entrée du programme
  *
- * Description : Affiche tous les chiffres de la base 10 (0-9)
- * suivi d'un saut de ligne.
+ * Description : Affiche les chiffres de 0 à 9 sur une seule ligne
+ * sans utiliser de variable de type char.
  * Return: Toujours 0 (Succès)
  */
 int main(void)
 {
-	int digit;
+	int n;
 
-	digit = 0;
-	while (digit <= 9)
+	n = 0;
+	while (n <= 9)
 	{
-		putchar(digit + '0');
-		digit++;
-		putchar('\n');
+		putchar(n + '0');
+		n++;
 	}
+	putchar('\n');
 
 	return (0);
 }
