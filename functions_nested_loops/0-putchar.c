@@ -3,11 +3,11 @@
 /**
  * main - Entry point
  *
- * Description: Prints _putchar followed by a new line
- * Return: Always 0 (Success)
+ * Return: Always 0
  */
 int main(void)
 {
-	printf("_putchar\n");
+	printf("_putchar");
+	printf("\n");
 	return (0);
 }
