@@ -20,6 +20,6 @@ while (lettre <= 'z')
 _putchar(lettre);
 lettre++;
 }
-putchar('\n');
+_putchar('\n');
 }
 }
