@@ -1,5 +1,6 @@
 #include "main.h"
 
+
 /**
  * _islower - vérifie si un caractère est en minuscule
  * @c: le caractère à vérifier (représenté par sa valeur ASCII)
