@@ -9,11 +9,11 @@ void times_table(void)
 {
 	int l, c, r;
 
-	for (r = 0; r <= 9; r++)
+	for (l = 0; l <= 9; l++)
 	{
 		for (c = 0; c <= 9; c++)
 		{
-			l = r * c;
+			r = l * c;
 
 			if (c == 0)
 			{
