@@ -7,6 +7,7 @@
  */
 int main(void)
 {
+	int a, b, resultat;
 	int choixMenu;
 
 	printf("Simple Calculator\n");
@@ -25,8 +26,6 @@ int main(void)
 	}
 	else if (choixMenu == 1)
 {
-	int a, b, resultat;
-
 printf("A:");
 	scanf("%d", &a);
 printf("B:");
@@ -34,6 +33,18 @@ printf("B:");
 		resultat = a + b;
 
 	printf("Resultat: %d\n", resultat);
+
+}	else if (choixMenu == 2)
+{
+
+printf("A:");
+	scanf("%d", &a);
+printf("B:");
+	scanf("%d", &b);
+
+	resultat = a - b;
+	printf("Resultat: %d\n", resultat);
+
 }
 
 else
@@ -51,6 +62,20 @@ else
  * Return: La somme de a et b
  */
 int Addition(int a, int b)
+{
+	int resultat;
+
+	printf("a");
+	scanf("%d", &a);
+	printf("b");
+	scanf("%d", &b);
+
+	resultat = a + b;
+	printf("Resultat %d\n", resultat);
+
+	return (resultat);
+}
+int Substract(int a, int b)
 {
 	int resultat;
 
