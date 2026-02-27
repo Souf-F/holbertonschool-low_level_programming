@@ -45,6 +45,15 @@ printf("B:");
 	resultat = a - b;
 	printf("Resultat: %d\n", resultat);
 
+} else if (choixMenu == 3)
+{
+printf("A:");
+	scanf("%d", &a);
+printf("B:");
+	scanf("%d", &b);
+		resultat = a * b;
+
+	printf("Resultat: %d\n", resultat);
 }
 
 else
@@ -84,7 +93,21 @@ int Substract(int a, int b)
 	printf("b");
 	scanf("%d", &b);
 
-	resultat = a + b;
+	resultat = a - b;
+	printf("Resultat %d\n", resultat);
+
+	return (resultat);
+}
+int Multiplication(int a, int b)
+{
+	int resultat;
+
+	printf("a");
+	scanf("%d", &a);
+	printf("b");
+	scanf("%d", &b);
+
+	resultat = a * b;
 	printf("Resultat %d\n", resultat);
 
 	return (resultat);
