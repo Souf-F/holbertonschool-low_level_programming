@@ -22,6 +22,10 @@ int main(void)
 	{
 		printf("Bye !\n");
 
+	} else
+	{
+	printf("Invalid Choice\n");
 	}
+
 	return (0);
 }
