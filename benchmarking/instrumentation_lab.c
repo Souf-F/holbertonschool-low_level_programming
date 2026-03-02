@@ -8,84 +8,79 @@ static int dataset[DATASET_SIZE];
 
 static unsigned int next_value(unsigned int *state)
 {
-	*state = (*state * 1103515245u) + 12345u;
-	return (*state);
+    *state = (*state * 1103515245u) + 12345u;
+    return *state;
 }
 
 static void build_dataset(void)
 {
-	unsigned int state;
-	int i;
+    unsigned int state;
+    int i;
 
-	state = SEED_VALUE;
+    state = SEED_VALUE;
 
-	for (i = 0; i < DATASET_SIZE; i++)
-		dataset[i] = (int)(next_value(&state) % 100000);
+    for (i = 0; i < DATASET_SIZE; i++)
+        dataset[i] = (int)(next_value(&state) % 100000);
 }
-
 
 static void process_dataset(void)
 {
-	int i;
-	int v;
+    int i;
+    int v;
 
-	for (i = 0; i < DATASET_SIZE; i++)
-	{
-		v = dataset[i];
-		v = (v * 3) + (v / 7) - (v % 11);
-		if (v < 0)
-			v = -v;
-		dataset[i] = v;
-	}
+    for (i = 0; i < DATASET_SIZE; i++)
+    {
+        v = dataset[i];
+        v = (v * 3) + (v / 7) - (v % 11);
+        if (v < 0)
+            v = -v;
+        dataset[i] = v;
+    }
 }
-
 
 static unsigned long reduce_checksum(void)
 {
-	unsigned long sum;
-	int i;
+    unsigned long sum;
+    int i;
 
-	sum = 0;
-	for (i = 0; i < DATASET_SIZE; i++)
-		sum = (sum * 131ul) + (unsigned long)dataset[i];
+    sum = 0;
+    for (i = 0; i < DATASET_SIZE; i++)
+        sum = (sum * 131ul) + (unsigned long)dataset[i];
 
-	return (sum);
+    return sum;
 }
 
 int main(void)
 {
-	clock_t t_start, t_build, t_process, t_reduce;
-	unsigned long checksum;
-	double d_total, d_build, d_process, d_reduce;
+    unsigned long checksum;
 
-	t_start = clock();
+ 	clock_t start_TOTAL, end_TOTAL;
+    clock_t start_BUILD, end_BUILD;
+    clock_t start_PROCESS, end_PROCESS;
+    clock_t start_REDUCE, end_REDUCE;
 
-	/* Étape Build */
+	start_TOTAL = clock();
+	start_BUILD = clock();
 	build_dataset();
-	t_build = clock();
+	end_BUILD = clock();
 
-	/* Étape Process */
-	process_dataset();
-	t_process = clock();
+	start_PROCESS = clock();
+    process_dataset();
+	end_PROCESS = clock();
 
-	/* Étape Reduce */
-	checksum = reduce_checksum();
-	t_reduce = clock();
+	start_REDUCE = clock();
+    checksum = reduce_checksum();
+	end_REDUCE =  clock();
+	end_TOTAL = clock();
 
-	/* Calculs des durées */
-	d_total = (double)(t_reduce - t_start) / CLOCKS_PER_SEC;
-	d_build = (double)(t_build - t_start) / CLOCKS_PER_SEC;
-	d_process = (double)(t_process - t_build) / CLOCKS_PER_SEC;
-	d_reduce = (double)(t_reduce - t_process) / CLOCKS_PER_SEC;
+   
+    if (checksum == 0ul)
+        printf("impossible\n");
 
-	if (checksum == 0ul)
-		printf("impossible\n");
+	 printf ("TOTAL_seconds %.6f\n",(double)(end_TOTAL - start_TOTAL)/CLOCKS_PER_SEC);
+	 printf ("BUILD_DATA seconds %.6f\n",(double)(end_BUILD - start_BUILD)/CLOCKS_PER_SEC);
+	 printf ("PROCESS seconds %.6f\n",(double)(end_PROCESS - start_PROCESS)/CLOCKS_PER_SEC);
+	 printf ("REDUCE seconds %.6f\n",(double)(end_REDUCE - start_REDUCE)/CLOCKS_PER_SEC);
 
-	/* Affichage formaté */
-	printf("TOTAL seconds: %f\n", d_total);
-	printf("BUILD_DATA seconds: %f\n", d_build);
-	printf("PROCESS seconds: %f\n", d_process);
-	printf("REDUCE seconds: %f\n", d_reduce);
-
-	return (0);
+    return 0;
 }
