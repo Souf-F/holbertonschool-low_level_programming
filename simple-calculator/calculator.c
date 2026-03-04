@@ -6,6 +6,31 @@
  *
  * Return: Toujours 0 (Succès).
  */
+
+double Addition(double a, double b)
+{
+    return (a + b);
+}
+
+double Substract(double a, double b)
+{
+    return (a - b);
+}
+
+double Multiplication(double a, double b)
+{
+    return (a * b);
+}
+
+double Division(double a, double b)
+{
+    if (b == 0)
+    {
+        printf("Error: division by zero\n");
+        return (0);
+    }
+    return (a / b);
+}
 int main(void)
 {
     double a, b, resultat;
@@ -75,33 +100,4 @@ int main(void)
     }
 
     return (0);
-}
-
-/**
- * Fonctions de calcul (Note: elles ne sont pas appelées dans votre main actuel)
- */
-
-int Addition(int a, int b)
-{
-    return (a + b);
-}
-
-int Substract(int a, int b)
-{
-    return (a - b);
-}
-
-int Multiplication(int a, int b)
-{
-    return (a * b);
-}
-
-double Division(double a, double b)
-{
-    if (b == 0)
-    {
-        printf("Error: division by zero\n");
-        return (0);
-    }
-    return (a / b);
 }
