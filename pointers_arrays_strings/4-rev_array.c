@@ -1,10 +1,11 @@
 #include "main.h"
+
 /**
- * _memcpy - Copies n bytes from memory area src to memory area dest.
- * @dest: Pointer to the destination memory area.
- * @src: Pointer to the source memory area.
- * @n: Number of bytes to copy.
- * Return: Pointer to the destination memory area (dest).
+ * reverse_array - Reverses the content of an array of integers.
+ * @a: The array of integers to be reversed.
+ * @n: The number of elements in the array.
+ *
+ * Return: void.
  */
 void reverse_array(int *a, int n)
 {

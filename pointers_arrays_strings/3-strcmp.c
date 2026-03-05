@@ -1,10 +1,12 @@
 #include "main.h"
+
 /**
- * _memcpy - Copies n bytes from memory area src to memory area dest.
- * @dest: Pointer to the destination memory area.
- * @src: Pointer to the source memory area.
- * @n: Number of bytes to copy.
- * Return: Pointer to the destination memory area (dest).
+ * _strcmp - Compares two strings.
+ * @s1: The first string to be compared.
+ * @s2: The second string to be compared.
+ *
+ * Return: The difference between the first non-matching characters,
+ * or 0 if the strings are identical.
  */
 int _strcmp(char *s1, char *s2)
 {
