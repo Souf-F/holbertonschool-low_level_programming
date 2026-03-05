@@ -1,15 +1,16 @@
-#include <stdio.h>
 #include "main.h"
+#include <stdio.h>
 
 /**
- * print_chessboard - affiche le plateau d'échecs
- * @a: le tableau 2D représentant le plateau
+ * print_chessboard - Prints the chessboard.
+ * @a: The 2D array representing the board.
  *
- * Return: rien.
+ * Return: void.
  */
 void print_chessboard(char (*a)[8])
 {
 	int i, j;
+
 	for (i = 0; i < 8; i++)
 	{
 		for (j = 0; j < 8; j++)
