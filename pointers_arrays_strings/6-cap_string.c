@@ -40,11 +40,6 @@ char *cap_string(char *s)
 			s[i] -= 32;
 			separateur = 0;
 		}
-		else if (s[i] >= 'A' && s[i] <= 'Z' && separateur == 0)
-		{
-			s[i] += 32;
-			separateur = 0;
-		}
 		else
 		{
 			separateur = 0;
