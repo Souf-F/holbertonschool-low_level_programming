@@ -1,12 +1,13 @@
-#include <stddef.h> /* Pour définir NULL */
 #include "main.h"
+#include <stddef.h>
+
 /**
- * _strchr - localise un caractère dans une chaîne
- * @s: la chaîne de caractères à parcourir
- * @c: le caractère à rechercher
+ * _strpbrk - Searches a string for any of a set of bytes.
+ * @s: The string to be scanned.
+ * @accept: The string containing the characters to match.
  *
- * Return: un pointeur vers la première occurrence de c, 
- * ou NULL si le caractère n'est pas trouvé.
+ * Return: A pointer to the byte in s that matches one of the bytes in accept,
+ * or NULL if no such byte is found.
  */
 char *_strpbrk(char *s, char *accept)
 {

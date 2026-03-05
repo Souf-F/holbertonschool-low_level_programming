@@ -1,20 +1,25 @@
-#include <stddef.h> /* Pour définir NULL */
 #include "main.h"
-/** * _strstr - localise une sous-chaîne dans une chaîne
- * @haystack: la chaîne de caractères à parcourir
- * @needle: la sous-chaîne à rechercher
+#include <stddef.h>
+
+/**
+ * _strstr - Locates a substring.
+ * @haystack: The string to be searched.
+ * @needle: The substring to be located.
  *
- * Return: un pointeur vers la première occurrence de needle dans haystack,
- * ou NULL si needle n'est pas trouvé.
+ * Return: A pointer to the beginning of the located substring,
+ * or NULL if the substring is not found.
  */
 char *_strstr(char *haystack, char *needle)
 {
-	while (*haystack != '0')
+	if (*needle == '\0')
+		return (haystack);
+
+	while (*haystack != '\0')
 	{
 		char *h = haystack;
 		char *n = needle;
 
-		while (*h == *n && *n != '\0')
+		while (*n != '\0' && *h == *n)
 		{
 			h++;
 			n++;

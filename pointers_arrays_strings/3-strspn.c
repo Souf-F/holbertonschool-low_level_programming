@@ -1,12 +1,12 @@
 #include "main.h"
-#include <stdio.h>
+
 /**
- * _strspn - calcule la longueur d'un segment de préfixe
- * @s: la chaîne à scanner
- * @accept: la chaîne contenant les caractères autorisés
+ * _strspn - Gets the length of a prefix substring.
+ * @s: The string to be scanned.
+ * @accept: The string containing the characters to match.
  *
- * Return: le nombre d'octets dans le segment initial de s
- * qui ne sont constitués que d'octets provenant de accept
+ * Return: The number of bytes in the initial segment of s
+ * which consist only of bytes from accept.
  */
 unsigned int _strspn(char *s, char *accept)
 {
@@ -19,7 +19,7 @@ unsigned int _strspn(char *s, char *accept)
 		{
 			if (s[i] == accept[j])
 			{
-				break; 
+				break;
 			}
 		}
 
