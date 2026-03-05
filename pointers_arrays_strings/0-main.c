@@ -1,18 +1,10 @@
-#include "main.h"
 #include <stdio.h>
-
 /**
- * main - check the code 
- *
- * Return: Always 0.
+ * reset_to_98 - prend un pointeur vers un int et met à jour
+ * la valeur vers laquelle il pointe à 98.
+ * @n: le pointeur vers l'entier à modifier
  */
-int main(void)
+void reset_to_98(int *n)
 {
-    int n;
-
-    n = 402;
-    printf("n=%d\n", n);
-    reset_to_98(&n);
-    printf("n=%d\n", n);
-    return (0);
+    *n = 98;
 }
