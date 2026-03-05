@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include "main.h"
 /**
  * _puts - Imprime une chaîne de caractères suivie d'un saut de ligne.
@@ -7,6 +6,7 @@
 void _puts(char *str)
 {
 	int i = 0;
+
 	while (str[i] != '\0')
 	{
 	_putchar(str[i]);
