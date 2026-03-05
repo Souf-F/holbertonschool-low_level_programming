@@ -1,6 +1,5 @@
 #include <unistd.h>
 #include "main.h"
-
 /**
  * _puts - Imprime une chaîne de caractères suivie d'un saut de ligne.
  * @str: Le pointeur vers la chaîne à afficher.
