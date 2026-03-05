@@ -1,27 +1,26 @@
-#include <stddef.h> /* Pour définir NULL */
 #include "main.h"
+#include <stddef.h>
+
 /**
- * _strchr - localise un caractère dans une chaîne
- * @s: la chaîne de caractères à parcourir
- * @c: le caractère à rechercher
+ * _strchr - Locates a character in a string.
+ * @s: The string to be searched.
+ * @c: The character to be located.
  *
- * Return: un pointeur vers la première occurrence de c, 
- * ou NULL si le caractère n'est pas trouvé.
+ * Return: A pointer to the first occurrence of c,
+ * or NULL if the character is not found.
  */
 char *_strchr(char *s, char c)
 {
-	while (*s != '\0')
+	while (1)
 	{
 		if (*s == c)
 		{
 			return (s);
 		}
-
 		if (*s == '\0')
 		{
 			break;
 		}
-
 		s++;
 	}
 
