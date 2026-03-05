@@ -6,14 +6,17 @@
  * @n: Number of bytes to copy.
  * Return: Pointer to the destination memory area (dest).
  */
-char *_strcat(char *dest, char *src)
+char *string_toupper(char *s)
 {
-	char *ptr = dest;
+    int i = 0;
 
-	while (*ptr)
-		ptr++;
-	while (*src)
-		*ptr++ = *src++;
-	*ptr = '\0';
-	return (dest);
+    while (s[i] != '\0')
+    {
+        if (s[i] >= 'a' && s[i] <= 'z')
+        {
+            s[i] = s[i] - 32;
+        }
+        i++;
+    }
+    return (s);
 }

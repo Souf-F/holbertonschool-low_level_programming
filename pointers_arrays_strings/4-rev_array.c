@@ -6,14 +6,19 @@
  * @n: Number of bytes to copy.
  * Return: Pointer to the destination memory area (dest).
  */
-char *_strcat(char *dest, char *src)
+void reverse_array(int *a, int n)
 {
-	char *ptr = dest;
+	int i = 0;
+	int j = n - 1;
+	int temp;
 
-	while (*ptr)
-		ptr++;
-	while (*src)
-		*ptr++ = *src++;
-	*ptr = '\0';
-	return (dest);
+	while (i < j)
+	{
+		temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+
+		i++;
+		j--;
+	}
 }

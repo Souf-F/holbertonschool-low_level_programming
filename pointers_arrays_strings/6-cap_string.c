@@ -6,14 +6,9 @@
  * @n: Number of bytes to copy.
  * Return: Pointer to the destination memory area (dest).
  */
-char *_strcat(char *dest, char *src)
+char *cap_string(char *s)
 {
-	char *ptr = dest;
+	int i;
 
-	while (*ptr)
-		ptr++;
-	while (*src)
-		*ptr++ = *src++;
-	*ptr = '\0';
-	return (dest);
+	while( i = 0 )
 }
