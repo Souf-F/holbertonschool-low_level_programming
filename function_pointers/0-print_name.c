@@ -7,13 +7,5 @@
  */
 void print_name(char *name, void (*f)(char *))
 {
-	if (!name)
-	{
-		return;
-	}
-	if (!f)
-	{
-		return;
-	}
 	f(name);
 }

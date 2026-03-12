@@ -1,13 +1,25 @@
 #include <stdio.h>
 #include "function_pointers.h"
-
 /**
- * print_elem - prints an integer
- * @elem: the integer to print
+ * array_iterator - executes a function on each element of an array
+ * @array: pointer to the array of integers
+ * @size: number of elements in the array
+ * @action: pointer to the function to call on each element
  *
  * Return: Nothing.
  */
 void array_iterator(int *array, size_t size, void (*action)(int))
 {
-	
+	size_t i;
+
+	if (!array)
+		return;
+
+	if (!action)
+		return;
+
+	for (i = 0; i < size; i++)
+	{
+		action(array[i]);
+	}
 }
