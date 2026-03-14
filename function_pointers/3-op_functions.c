@@ -1,11 +1,11 @@
 #include "3-calc.h"
 
 /**
- * op_add - Calcule la somme de deux entiers.
- * @a: Le premier entier.
- * @b: Le deuxième entier.
+ * op_add - Returns the sum of a and b
+ * @a: First operand
+ * @b: Second operand
  *
- * Return: La somme de a et b.
+ * Return: Sum of a and b
  */
 int op_add(int a, int b)
 {
@@ -13,11 +13,11 @@ int op_add(int a, int b)
 }
 
 /**
- * op_sub - Calcule la différence de deux entiers.
- * @a: Le premier entier.
- * @b: Le deuxième entier.
+ * op_sub - Returns the difference of a and b
+ * @a: First operand
+ * @b: Second operand
  *
- * Return: La différence de a et b.
+ * Return: Difference of a and b
  */
 int op_sub(int a, int b)
 {
@@ -25,11 +25,11 @@ int op_sub(int a, int b)
 }
 
 /**
- * op_mul - Calcule le produit de deux entiers.
- * @a: Le premier entier.
- * @b: Le deuxième entier.
+ * op_mul - Returns the product of a and b
+ * @a: First operand
+ * @b: Second operand
  *
- * Return: Le produit de a et b.
+ * Return: Product of a and b
  */
 int op_mul(int a, int b)
 {
@@ -37,11 +37,11 @@ int op_mul(int a, int b)
 }
 
 /**
- * op_div - Calcule la division de deux entiers.
- * @a: Le premier entier.
- * @b: Le deuxième entier.
+ * op_div - Returns the division of a by b
+ * @a: First operand
+ * @b: Second operand
  *
- * Return: Le résultat de la division de a par b.
+ * Return: Result of a divided by b
  */
 int op_div(int a, int b)
 {
@@ -49,11 +49,11 @@ int op_div(int a, int b)
 }
 
 /**
- * op_mod - Calcule le reste de la division de deux entiers.
- * @a: Le premier entier.
- * @b: Le deuxième entier.
+ * op_mod - Returns the remainder of a divided by b
+ * @a: First operand
+ * @b: Second operand
  *
- * Return: Le reste de la division de a par b.
+ * Return: Remainder of a divided by b
  */
 int op_mod(int a, int b)
 {
