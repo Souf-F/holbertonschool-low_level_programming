@@ -1,41 +1,41 @@
-#include <stdio.h>
+#include "variadic_functions.h"
 #include <stdarg.h>
+#include <stdio.h>
 
 /**
  * print_all - prints anything based on a format string
  * @format: list of types of arguments passed to the function
- *          c: char, i: integer, f: float, s: char *
+ *
+ * Return: void
  */
 void print_all(const char * const format, ...)
 {
 	va_list args;
 	const char *p;
 	char *s;
-	char *types;
 	int first;
-	int i;
 
 	va_start(args, format);
 	p = format;
-	types = "cifs";
 	first = 1;
 	while (p && *p)
 	{
-		i = 0;
-		s = NULL;
-		while (types[i] && types[i] != *p)
-			i++;
-		if (types[i])
+		if (*p == 'c' || *p == 'i' || *p == 'f' || *p == 's')
 		{
 			if (!first)
 				printf(", ");
 			first = 0;
-			s = (i == 3) ? va_arg(args, char *) : NULL;
-			printf(i == 0 ? "%c" : i == 1 ? "%d" : i == 2 ? "%f" : "%s",
-				i == 0 ? va_arg(args, int) :
-				i == 1 ? va_arg(args, int) :
-				i == 2 ? (int)va_arg(args, double) :
-				(int)(s ? s : "(nil)"));
+			if (*p == 'c')
+				printf("%c", va_arg(args, int));
+			if (*p == 'i')
+				printf("%d", va_arg(args, int));
+			if (*p == 'f')
+				printf("%f", va_arg(args, double));
+			if (*p == 's')
+			{
+				s = va_arg(args, char *);
+				printf("%s", s ? s : "(nil)");
+			}
 		}
 		p++;
 	}
