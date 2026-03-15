@@ -1,17 +1,17 @@
-#include <stdio.h>
 #include "dog.h"
-
+#include <stdlib.h>
 /**
- * main - check the code
+ * free_dog - Frees memory allocated for a struct dog.
+ * @d: struct dog to free.
  *
- * Return: Always 0.
+ * Description: Frees the strings name and owner,
+ * then frees the dog structure itself.
  */
-int main(void)
+void free_dog(dog_t *d)
 {
-	dog_t *my_dog;
-
-	my_dog = new_dog("Poppy", 3.5, "Bob");
-printf("My name is %s, and I am %.1f :) - Woof!\n", my_dog->name, my_dog->age);
-	free_dog(my_dog);
-	return (0);
+	if (d == NULL)
+		return;
+	free(d->owner);
+	free(d->name);
+	free(d);
 }
