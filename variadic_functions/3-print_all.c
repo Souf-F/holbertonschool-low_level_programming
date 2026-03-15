@@ -1,5 +1,6 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
+#include <stddef.h>
 /**
  * print_int - prints an integer using _putchar
  * @n: the integer to print
@@ -25,7 +26,7 @@ void print_str(char *s)
 	int i;
 
 	i = 0;
-	if (!s)
+	if (s == 0)
 		s = "(nil)";
 	while (s[i])
 	{
