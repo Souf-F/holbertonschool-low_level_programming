@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
+
 /**
  * print_all - prints anything based on a format string
  * @format: list of types of arguments passed to the function
@@ -29,17 +30,12 @@ void print_all(const char * const format, ...)
 			if (!first)
 				printf(", ");
 			first = 0;
-			if (i == 0)
-				printf("%c", va_arg(args, int));
-			if (i == 1)
-				printf("%d", va_arg(args, int));
-			if (i == 2)
-				printf("%f", va_arg(args, double));
-			if (i == 3)
-			{
-				s = va_arg(args, char *);
-				printf("%s", s ? s : "(nil)");
-			}
+			s = (i == 3) ? va_arg(args, char *) : NULL;
+			printf(i == 0 ? "%c" : i == 1 ? "%d" : i == 2 ? "%f" : "%s",
+				i == 0 ? va_arg(args, int) :
+				i == 1 ? va_arg(args, int) :
+				i == 2 ? (int)va_arg(args, double) :
+				(int)(s ? s : "(nil)"));
 		}
 		p++;
 	}
