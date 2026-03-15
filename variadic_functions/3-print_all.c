@@ -1,79 +1,90 @@
-#include "variadic_functions.h"
+#include <stdio.h>
 #include <stdarg.h>
-#include <stddef.h>
+#include "variadic_functions.h"
+
 /**
- * print_int - prints an integer using _putchar
- * @n: the integer to print
+ * print_char - prints a character
+ * @list: list of arguments
  */
-void print_int(int n)
+
+void print_char(va_list list)
 {
-	if (n < 0)
-	{
-		_putchar('-');
-		n = -n;
-	}
-	if (n / 10)
-		print_int(n / 10);
-	_putchar((n % 10) + '0');
+	printf("%c", va_arg(list, int));
 }
 
 /**
- * print_str - prints a string using _putchar
- * @s: the string to print
+ * print_int - prints an integer
+ * @list: list of arguments
  */
-void print_str(char *s)
-{
-	int i;
 
-	i = 0;
-	if (s == 0)
-		s = "(nil)";
-	while (s[i])
-	{
-		_putchar(s[i]);
-		i++;
-	}
+void print_int(va_list list)
+{
+	printf("%d", va_arg(list, int));
 }
 
 /**
- * print_all - prints anything based on a format string
- * @format: list of types of arguments passed to the function
+ * print_float - prints a float
+ * @list: list of arguments
+ */
+void print_float(va_list list)
+{
+	printf("%f", va_arg(list, double));
+}
+
+/**
+ * print_string - prints a string
+ * @list: list of arguments
+ */
+void print_string(va_list list)
+{
+	char *str = va_arg(list, char*);
+
+	if (str == NULL)
+		str = "(nil)";
+
+	printf("%s", str);
+}
+
+/**
+ * print_all - prints anything
+ * @format: a string of characters representing the types of arguments
+ * @...: variable number of arguments to be printed
  */
 void print_all(const char * const format, ...)
 {
-	va_list args;
-	const char *p;
-	char *s;
-	int first;
+	int index1 = 0, index2;
+	const char *separator = "";
 
-	va_start(args, format);
-	p = format;
-	first = 1;
-	while (p && *p)
+	va_list list;
+
+	checker storage[] = {
+		{"c", print_char},
+		{"i", print_int},
+		{"f", print_float},
+		{"s", print_string},
+		{NULL, NULL}
+	};
+
+	va_start(list, format);
+
+	while (format && format[index1])
 	{
-		s = NULL;
-		if (*p == 'c' || *p == 'i' || *p == 'f' || *p == 's')
+		index2 = 0;
+
+		while (storage[index2].type != NULL)
 		{
-			if (!first)
+			if (format[index1] == *storage[index2].type)
 			{
-				_putchar(',');
-				_putchar(' ');
+				printf("%s", separator);
+				storage[index2].function(list);
+				separator = ", ";
+				break;
 			}
-			first = 0;
-			if (*p == 'c')
-				_putchar(va_arg(args, int));
-			if (*p == 'i')
-				print_int(va_arg(args, int));
-			if (*p == 'f')
-				print_int((int)va_arg(args, double));
-			if (*p == 's')
-			{
-				s = va_arg(args, char *);
-				print_str(s);
-			}
+			index2++;
 		}
-		p++;
+		index1++;
 	}
-	_putchar('\n');
-	va_end(args);
+
+	printf("\n");
+	va_end(list);
 }
