@@ -1,9 +1,9 @@
-#ifndef LISTS_H
-#define LISTS_H
-
+#ifndef MAIN
+#define MAIN
 #include <stdlib.h>
-#include <stddef.h>
 #include <string.h>
+#include <stdio.h>
+#include <stddef.h>
 
 /**
  * struct list_s - singly linked list
@@ -13,11 +13,10 @@
  *
  * Description: singly linked list node structure
  */
-
 typedef struct list_s
 {
 	char *str;
-	size_t len;
+	unsigned int len;
 	struct list_s *next;
 } list_t;
 
