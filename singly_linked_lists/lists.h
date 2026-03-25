@@ -23,5 +23,4 @@ size_t list_len(const list_t *h);
 
 int _putchar(char c);
 
-
 #endif
