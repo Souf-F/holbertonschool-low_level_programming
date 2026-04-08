@@ -253,6 +253,74 @@ void close_elf(int elf)
 }
 
 /**
+ * open_elf_file - Opens an ELF file.
+ * @filename: The name of the ELF file.
+ *
+ * Return: The file descriptor of the opened ELF file.
+ */
+int open_elf_file(char *filename)
+{
+	int fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", filename);
+		exit(98);
+	}
+	return (fd);
+}
+
+/**
+ * read_elf_header - Reads the ELF header from a file.
+ * @fd: The file descriptor of the ELF file.
+ * @filename: The name of the ELF file (for error messages).
+ *
+ * Return: A pointer to the ELF header structure.
+ */
+Elf64_Ehdr *read_elf_header(int fd, char *filename)
+{
+	Elf64_Ehdr *header;
+	ssize_t r;
+
+	header = malloc(sizeof(Elf64_Ehdr));
+	if (header == NULL)
+	{
+		close_elf(fd);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", filename);
+		exit(98);
+	}
+
+	r = read(fd, header, sizeof(Elf64_Ehdr));
+	if (r == -1)
+	{
+		free(header);
+		close_elf(fd);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", filename);
+		exit(98);
+	}
+
+	return (header);
+}
+
+/**
+ * display_elf_header - Displays all ELF header information.
+ * @header: A pointer to the ELF header structure.
+ */
+void display_elf_header(Elf64_Ehdr *header)
+{
+	printf("ELF Header:\n");
+	print_magic(header->e_ident);
+	print_class(header->e_ident);
+	print_data(header->e_ident);
+	print_version(header->e_ident);
+	print_osabi(header->e_ident);
+	print_abi(header->e_ident);
+	print_type(header->e_type, header->e_ident);
+	print_entry(header->e_entry, header->e_ident);
+}
+
+/**
  * main - Displays the information contained in the
  *        ELF header at the start of an ELF file.
  * @argc: The number of arguments supplied to the program.
@@ -263,7 +331,7 @@ void close_elf(int elf)
 int main(int argc, char *argv[])
 {
 	Elf64_Ehdr *header;
-	int o, r;
+	int fd;
 
 	if (argc != 2)
 	{
@@ -271,40 +339,12 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	o = open(argv[1], O_RDONLY);
-	if (o == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
-		exit(98);
-	}
-	header = malloc(sizeof(Elf64_Ehdr));
-	if (header == NULL)
-	{
-		close_elf(o);
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
-		exit(98);
-	}
-	r = read(o, header, sizeof(Elf64_Ehdr));
-	if (r == -1)
-	{
-		free(header);
-		close_elf(o);
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
-		exit(98);
-	}
-
+	fd = open_elf_file(argv[1]);
+	header = read_elf_header(fd, argv[1]);
 	check_elf(header->e_ident);
-	printf("ELF Header:\n");
-	print_magic(header->e_ident);
-	print_class(header->e_ident);
-	print_data(header->e_ident);
-	print_version(header->e_ident);
-	print_osabi(header->e_ident);
-	print_abi(header->e_ident);
-	print_type(header->e_type, header->e_ident);
-	print_entry(header->e_entry, header->e_ident);
+	display_elf_header(header);
 
 	free(header);
-	close_elf(o);
+	close_elf(fd);
 	return (0);
 }
